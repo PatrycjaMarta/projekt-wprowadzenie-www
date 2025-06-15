@@ -31,10 +31,73 @@ document.addEventListener("DOMContentLoaded", () => {
               imgUrl = "";
             }
           }
-          const stat = (label, value, max = 5) =>
-            `<li><strong>${label}:</strong> <span class='stat-bar'><span class='stat-fill' style='width:${
-              (value / max) * 100
-            }%'></span></span> (${value}/5)</li>`;
+          // Tabela statystyk z ikonami i tooltipami jako grid
+          const stats = [
+            {
+              icon: "fa-heart",
+              label: "Zdrowie",
+              value:
+                cat.health_issues !== undefined ? 5 - cat.health_issues : "?",
+              tooltip: "Poziom zdrowia",
+            },
+            {
+              icon: "fa-brush",
+              label: "Pielęgnacja",
+              value: cat.grooming ?? "?",
+              tooltip: "Łatwość pielęgnacji",
+            },
+            {
+              icon: "fa-volume-up",
+              label: "Wokalizacja",
+              value: cat.vocalisation ?? "?",
+              tooltip: "Poziom wokalizacji",
+            },
+            {
+              icon: "fa-bolt",
+              label: "Energia",
+              value: cat.energy_level ?? "?",
+              tooltip: "Poziom energii",
+            },
+            {
+              icon: "fa-dog",
+              label: "Przyjazny psom",
+              value: cat.dog_friendly ?? "?",
+              tooltip: "Przyjazny psom",
+            },
+            {
+              icon: "fa-child",
+              label: "Przyjazny dzieciom",
+              value: cat.child_friendly ?? "?",
+              tooltip: "Przyjazny dzieciom",
+            },
+            {
+              icon: "fa-lightbulb",
+              label: "Inteligencja",
+              value: cat.intelligence ?? "?",
+              tooltip: "Poziom inteligencji",
+            },
+            {
+              icon: "fa-users",
+              label: "Towarzyskość",
+              value: cat.social_needs ?? "?",
+              tooltip: "Poziom towarzyskości",
+            },
+            {
+              icon: "fa-feather",
+              label: "Linienie",
+              value: cat.shedding_level ?? "?",
+              tooltip: "Poziom linienia",
+            },
+          ];
+          const statsGrid = `<div class='cat-stats-grid'>${stats
+            .map(
+              (stat) => `
+            <div class="stat-grid-item" title="${stat.tooltip}">
+              <span class="stat-icon"><i class="fa-solid ${stat.icon}"></i></span>
+              <span class="stat-value">${stat.value}/5</span>
+            </div>`
+            )
+            .join("")}</div>`;
           const card = document.createElement("div");
           card.className = "karta-kota";
           card.innerHTML = `
@@ -55,37 +118,11 @@ document.addEventListener("DOMContentLoaded", () => {
               <li><strong>Hipoalergiczny:</strong> ${
                 cat.hypoallergenic ? "Tak" : "Nie"
               }</li>
-              <li><strong>Przyjazny dzieciom:</strong> ${
-                cat.child_friendly ?? "?"
-              }/5</li>
-              <li><strong>Przyjazny psom:</strong> ${
-                cat.dog_friendly ?? "?"
-              }/5</li>
-              <li><strong>Poziom energii:</strong> ${
-                cat.energy_level ?? "?"
-              }/5</li>
-              <li><strong>Poziom inteligencji:</strong> ${
-                cat.intelligence ?? "?"
-              }/5</li>
-              <li><strong>Poziom towarzyskości:</strong> ${
-                cat.social_needs ?? "?"
-              }/5</li>
-              <li><strong>Poziom wokalizacji:</strong> ${
-                cat.vocalisation ?? "?"
-              }/5</li>
-              <li><strong>Łatwość pielęgnacji:</strong> ${
-                cat.grooming ?? "?"
-              }/5</li>
-              <li><strong>Poziom linienia:</strong> ${
-                cat.shedding_level ?? "?"
-              }/5</li>
-              <li><strong>Poziom zdrowia:</strong> ${
-                cat.health_issues !== undefined ? 5 - cat.health_issues : "?"
-              }/5</li>
-              <li><a href="${
-                cat.wikipedia_url
-              }" target="_blank">Wikipedia</a></li>
             </ul>
+            ${statsGrid}
+            <div style="margin-top:0.7rem"><a href="${
+              cat.wikipedia_url
+            }" target="_blank">Wikipedia</a></div>
           `;
           listaKotow.appendChild(card);
         }
