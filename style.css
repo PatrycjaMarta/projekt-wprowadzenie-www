@@ -1,134 +1,240 @@
 /* style.css – własne style */
 
 body {
-  font-family: Arial, sans-serif;
+  font-family: "Segoe UI", Arial, sans-serif;
   margin: 0;
   padding: 0;
-  background: #f7f7f7;
+  background: linear-gradient(120deg, #f7f2ff 0%, #e0d6f7 100%);
   color: #222;
+  min-height: 100vh;
 }
 
 header {
-  background: #4a90e2;
+  background: linear-gradient(90deg, #904ae2 0%, #4a90e2 100%);
   color: #fff;
-  padding: 1rem 0;
+  padding: 0;
+  box-shadow: 0 4px 24px rgba(74, 144, 226, 0.18);
+  position: relative;
+  z-index: 2;
 }
 
 .header-container {
   max-width: 900px;
   margin: 0 auto;
-  padding: 0 2rem;
+  padding: 2.5rem 2rem 2rem 2rem;
   display: flex;
   flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.header-container h1 {
+  font-size: 2.5rem;
+  font-weight: 800;
+  letter-spacing: 1px;
+  margin: 0 0 0.7rem 0;
+  background: linear-gradient(90deg, #fff 30%, #e0d6f7 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
 nav ul {
   list-style: none;
   padding: 0;
   display: flex;
-  gap: 1rem;
+  gap: 2rem;
+  margin: 0;
 }
 
 nav a {
   color: #fff;
   text-decoration: none;
+  font-size: 1.1rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  padding: 0.5rem 1.2rem;
+  border-radius: 6px;
+  transition: background 0.2s, color 0.2s;
+}
+nav a:hover {
+  background: rgba(255, 255, 255, 0.13);
+  color: #ffe;
 }
 
 main {
-  max-width: 900px;
-  margin: 2rem auto;
-  padding: 1rem;
+  max-width: 1000px;
+  margin: 3rem auto 2rem auto;
+  padding: 2rem 1.5rem;
   background: #fff;
-  border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  border-radius: 18px;
+  box-shadow: 0 8px 32px rgba(144, 74, 226, 0.1),
+    0 1.5px 8px rgba(74, 144, 226, 0.08);
+  position: relative;
 }
 
 section {
-  margin-bottom: 2rem;
-}
-
-#lista-psow {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1rem;
+  margin-bottom: 2.5rem;
 }
 
 footer {
   text-align: center;
-  padding: 1rem;
-  background: #eee;
+  padding: 1.5rem;
+  background: linear-gradient(90deg, #e0d6f7 0%, #f7f2ff 100%);
   color: #555;
   margin-top: 2rem;
-}
-
-.formularz-kolumnowy {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 1.5rem;
-  align-items: end;
-  margin-top: 1rem;
-}
-
-.form-col {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-}
-
-.form-btn {
-  align-items: flex-end;
-}
-
-@media (max-width: 800px) {
-  .formularz-kolumnowy {
-    grid-template-columns: 1fr 1fr;
-  }
-}
-
-@media (max-width: 500px) {
-  .formularz-kolumnowy {
-    grid-template-columns: 1fr;
-  }
+  border-radius: 0 0 18px 18px;
+  box-shadow: 0 -2px 12px rgba(144, 74, 226, 0.07);
 }
 
 .formularz-pionowy {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: 1.1rem;
   max-width: 400px;
-  margin: 2rem auto 0 auto;
-  background: #f2f7ff;
-  padding: 2rem 1.5rem;
-  border-radius: 12px;
-  box-shadow: 0 2px 12px rgba(74, 144, 226, 0.08);
+  margin: 2.5rem auto 0 auto;
+  background: linear-gradient(120deg, #fff 60%, #e0d6f7 100%);
+  padding: 2.2rem 1.7rem 1.7rem 1.7rem;
+  border-radius: 16px;
+  box-shadow: 0 4px 24px rgba(144, 74, 226, 0.13);
+  align-items: stretch;
+  border: 1.5px solid #e0d6f7;
 }
 
 .formularz-pionowy label {
-  font-weight: bold;
+  font-weight: 600;
   margin-bottom: 0.2rem;
+  color: #904ae2;
+  letter-spacing: 0.2px;
 }
 
 .formularz-pionowy input,
 .formularz-pionowy textarea {
-  padding: 0.6rem;
+  padding: 0.7rem;
   border: 1px solid #b3c6e0;
-  border-radius: 6px;
+  border-radius: 7px;
   font-size: 1rem;
-  background: #fff;
+  background: #f7f2ff;
+  margin-bottom: 0.2rem;
+  font-family: inherit;
 }
 
 .formularz-pionowy button {
-  background: #4a90e2;
+  background: linear-gradient(90deg, #904ae2 0%, #4a90e2 100%);
   color: #fff;
   border: none;
-  border-radius: 6px;
-  padding: 0.8rem;
+  border-radius: 7px;
+  padding: 0.9rem;
   font-size: 1.1rem;
   font-weight: bold;
   cursor: pointer;
+  margin-top: 0.5rem;
+  box-shadow: 0 2px 8px rgba(144, 74, 226, 0.1);
+  letter-spacing: 0.5px;
   transition: background 0.2s;
 }
 
 .formularz-pionowy button:hover {
-  background: #3576b8;
+  background: linear-gradient(90deg, #4a90e2 0%, #904ae2 100%);
+}
+
+.karta-kota {
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 4px 24px rgba(144, 74, 226, 0.13);
+  padding: 1.5rem 1.2rem;
+  margin-bottom: 0;
+  flex: 1 1 320px;
+  min-width: 260px;
+  max-width: 340px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+  transition: transform 0.15s, box-shadow 0.15s;
+  border: 1.5px solid #e0d6f7;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+}
+.karta-kota:hover {
+  box-shadow: 0 12px 36px rgba(144, 74, 226, 0.18);
+  border-color: #904ae2;
+}
+
+.karta-kota h3 {
+  margin: 0 0 0.3rem 0;
+  color: #904ae2;
+  font-size: 1.3rem;
+  letter-spacing: 0.5px;
+}
+
+.karta-kota ul.cat-info {
+  list-style: none;
+  padding: 0;
+  margin: 0.5rem 0 0 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  font-size: 0.98rem;
+}
+
+.karta-kota li strong {
+  color: #904ae2;
+}
+
+.cat-img {
+  width: 220px;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 10px;
+  margin-top: 0.7rem;
+  box-shadow: 0 2px 8px rgba(144, 74, 226, 0.1);
+  background: #eaeaea;
+  display: block;
+}
+
+.cat-img-placeholder {
+  width: 220px;
+  height: 180px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #eaeaea;
+  color: #aaa;
+  font-size: 1rem;
+  border-radius: 10px;
+  margin-top: 0.7rem;
+  box-shadow: 0 2px 8px rgba(144, 74, 226, 0.1);
+  text-align: center;
+}
+
+#lista-kotow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2.2rem;
+  justify-content: center;
+  align-items: flex-start;
+  margin: 0 auto;
+  max-width: 1000px;
+  padding: 2.5rem 0 1.5rem 0;
+  background: linear-gradient(120deg, #fff 60%, #e0d6f7 100%);
+  border-radius: 18px;
+  box-shadow: 0 8px 32px rgba(144, 74, 226, 0.1),
+    0 1.5px 8px rgba(74, 144, 226, 0.08);
+  min-height: 350px;
+  position: relative;
+  z-index: 1;
+}
+
+#koty > h2 {
+  text-align: center;
+  font-size: 2rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  margin-bottom: 1.5rem;
+  color: #904ae2;
+  background: linear-gradient(90deg, #904ae2 0%, #4a90e2 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
