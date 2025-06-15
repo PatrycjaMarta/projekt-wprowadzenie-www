@@ -31,7 +31,35 @@ document.addEventListener("DOMContentLoaded", () => {
               imgUrl = "";
             }
           }
-          // Tabela statystyk z ikonami i tooltipami jako grid
+          // Pobierz szablon karty kota
+          const template = document.getElementById("cat-card-template");
+          const card = template.content.cloneNode(true);
+          card.querySelector(".cat-name").textContent = cat.name;
+          const imgEl = card.querySelector(".cat-img");
+          if (imgUrl) {
+            imgEl.src = imgUrl;
+            imgEl.alt = cat.name;
+            imgEl.classList.remove("cat-img-placeholder");
+          } else {
+            imgEl.src = "";
+            imgEl.alt = "Brak zdjęcia";
+            imgEl.classList.add("cat-img-placeholder");
+            imgEl.removeAttribute("src");
+          }
+          card.querySelector(".cat-desc").innerHTML = `<strong>Opis:</strong> ${
+            cat.description || "Brak opisu"
+          }`;
+          card.querySelector(".cat-origin").textContent = cat.origin || "?";
+          card.querySelector(".cat-life").textContent =
+            (cat.life_span || "?") + " lat";
+          card.querySelector(".cat-weight").textContent =
+            (cat.weight?.metric || "?") + " kg";
+          card.querySelector(".cat-temperament").textContent =
+            cat.temperament || "?";
+          card.querySelector(".cat-hypo").textContent = cat.hypoallergenic
+            ? "Tak"
+            : "Nie";
+          // Statystyki jako grid
           const stats = [
             {
               icon: "fa-heart",
@@ -89,41 +117,20 @@ document.addEventListener("DOMContentLoaded", () => {
               tooltip: "Poziom linienia",
             },
           ];
-          const statsGrid = `<div class='cat-stats-grid'>${stats
-            .map(
-              (stat) => `
-            <div class="stat-grid-item" title="${stat.tooltip}">
-              <span class="stat-icon"><i class="fa-solid ${stat.icon}"></i></span>
-              <span class="stat-value">${stat.value}/5</span>
-            </div>`
-            )
-            .join("")}</div>`;
-          const card = document.createElement("div");
-          card.className = "karta-kota";
-          card.innerHTML = `
-            <h3>${cat.name}</h3>
-            ${
-              imgUrl
-                ? `<img src="${imgUrl}" alt="${cat.name}" class="cat-img">`
-                : "<div class='cat-img cat-img-placeholder'>Brak zdjęcia</div>"
-            }
-            <p><strong>Opis:</strong> ${cat.description || "Brak opisu"}</p>
-            <ul class="cat-info">
-              <li><strong>Pochodzenie:</strong> ${cat.origin || "?"}</li>
-              <li><strong>Długość życia:</strong> ${
-                cat.life_span || "?"
-              } lat</li>
-              <li><strong>Waga:</strong> ${cat.weight?.metric || "?"} kg</li>
-              <li><strong>Temperament:</strong> ${cat.temperament || "?"}</li>
-              <li><strong>Hipoalergiczny:</strong> ${
-                cat.hypoallergenic ? "Tak" : "Nie"
-              }</li>
-            </ul>
-            ${statsGrid}
-            <div style="margin-top:0.7rem"><a href="${
-              cat.wikipedia_url
-            }" target="_blank">Wikipedia</a></div>
-          `;
+          const statsGrid = document.createElement("div");
+          statsGrid.className = "cat-stats-grid";
+          stats.forEach((stat) => {
+            const statDiv = document.createElement("div");
+            statDiv.className = "stat-grid-item";
+            statDiv.title = stat.tooltip;
+            statDiv.innerHTML = `<span class="stat-icon"><i class="fa-solid ${stat.icon}"></i></span><span class="stat-value">${stat.value}/5</span>`;
+            statsGrid.appendChild(statDiv);
+          });
+          card.querySelector(".cat-stats-grid").replaceWith(statsGrid);
+          // Wikipedia
+          const wiki = card.querySelector(".cat-wiki");
+          wiki.href = cat.wikipedia_url;
+          wiki.textContent = "Wikipedia";
           listaKotow.appendChild(card);
         }
       } else {

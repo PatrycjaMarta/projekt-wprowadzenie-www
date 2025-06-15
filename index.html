@@ -49,6 +49,32 @@
         Wprowadzenie do aplikacji WWW.
       </p>
     </footer>
+    <template id="cat-card-template">
+      <div class="karta-kota">
+        <h3 class="cat-name"></h3>
+        <img class="cat-img" />
+        <p class="cat-desc"></p>
+        <ul class="cat-info">
+          <li>
+            <strong>Pochodzenie:</strong> <span class="cat-origin"></span>
+          </li>
+          <li>
+            <strong>Długość życia:</strong> <span class="cat-life"></span>
+          </li>
+          <li><strong>Waga:</strong> <span class="cat-weight"></span></li>
+          <li>
+            <strong>Temperament:</strong> <span class="cat-temperament"></span>
+          </li>
+          <li>
+            <strong>Hipoalergiczny:</strong> <span class="cat-hypo"></span>
+          </li>
+        </ul>
+        <div class="cat-stats-grid"></div>
+        <div style="margin-top: 0.7rem">
+          <a class="cat-wiki" target="_blank">Wikipedia</a>
+        </div>
+      </div>
+    </template>
     <script src="script.js"></script>
   </body>
 </html>
