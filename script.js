@@ -141,4 +141,19 @@ document.addEventListener("DOMContentLoaded", () => {
       listaKotow.innerHTML = "Błąd podczas pobierania danych z API.";
       console.error(error);
     });
+
+  // DARK MODE
+  const darkToggle = document.getElementById("darkmode-toggle");
+  const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+  const savedTheme = localStorage.getItem("theme");
+  if (savedTheme === "dark" || (!savedTheme && prefersDark)) {
+    document.body.classList.add("dark");
+  }
+  darkToggle.addEventListener("click", () => {
+    document.body.classList.toggle("dark");
+    localStorage.setItem(
+      "theme",
+      document.body.classList.contains("dark") ? "dark" : "light"
+    );
+  });
 });

@@ -4,9 +4,14 @@ body {
   font-family: "Segoe UI", Arial, sans-serif;
   margin: 0;
   padding: 0;
-  background: linear-gradient(120deg, #f7f2ff 0%, #e0d6f7 100%);
+  background: #f7f2ff;
   color: #222;
   min-height: 100vh;
+  transition: background 0.3s, color 0.3s;
+}
+body.dark {
+  background: #18162a;
+  color: #eae6f7;
 }
 
 header {
@@ -16,6 +21,87 @@ header {
   box-shadow: 0 4px 24px rgba(74, 144, 226, 0.18);
   position: relative;
   z-index: 2;
+  transition: background 0.3s, color 0.3s;
+}
+body.dark header {
+  background: linear-gradient(90deg, #23203a 0%, #3a2e5c 100%);
+  color: #eae6f7;
+}
+
+#darkmode-toggle {
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 1.5rem;
+  margin-top: 1.2rem;
+  margin-left: auto;
+  cursor: pointer;
+  transition: color 0.2s;
+  outline: none;
+}
+#darkmode-toggle:hover {
+  color: #ffe;
+}
+body.dark #darkmode-toggle {
+  color: #ffe;
+}
+
+main {
+  max-width: 1000px;
+  margin: 3rem auto 2rem auto;
+  padding: 2rem 1.5rem;
+  background: none;
+  border-radius: 18px;
+  box-shadow: none;
+  position: relative;
+}
+
+#lista-kotow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2.2rem;
+  justify-content: center;
+  align-items: flex-start;
+  margin: 0 auto;
+  max-width: 1000px;
+  padding: 2.5rem 0 1.5rem 0;
+  background: linear-gradient(120deg, #fff 60%, #e0d6f7 100%);
+  border-radius: 18px;
+  box-shadow: 0 8px 32px rgba(144, 74, 226, 0.1),
+    0 1.5px 8px rgba(74, 144, 226, 0.08);
+  min-height: 350px;
+  position: relative;
+  z-index: 1;
+  transition: background 0.3s, color 0.3s;
+}
+body.dark #lista-kotow {
+  background: linear-gradient(120deg, #23203a 60%, #3a2e5c 100%);
+  box-shadow: 0 8px 32px rgba(74, 144, 226, 0.13),
+    0 1.5px 8px rgba(144, 74, 226, 0.1);
+}
+
+.karta-kota {
+  background: linear-gradient(120deg, #f7f2ff 0%, #e0d6f7 100%);
+  border-radius: 16px;
+  box-shadow: 0 4px 24px rgba(144, 74, 226, 0.13);
+  padding: 1.5rem 1.2rem;
+  margin-bottom: 0;
+  flex: 1 1 320px;
+  min-width: 260px;
+  max-width: 340px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+  transition: transform 0.15s, box-shadow 0.15s, background 0.3s;
+  border: 1.5px solid #e0d6f7;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+}
+body.dark .karta-kota {
+  background: linear-gradient(120deg, #23203a 0%, #3a2e5c 100%);
+  border-color: #3a2e5c;
+  box-shadow: 0 4px 24px rgba(74, 144, 226, 0.13);
 }
 
 .header-container {
@@ -34,6 +120,13 @@ header {
   letter-spacing: 1px;
   margin: 0 0 0.7rem 0;
   background: linear-gradient(90deg, #fff 30%, #e0d6f7 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  transition: color 0.3s, background 0.3s;
+}
+body.dark .header-container h1 {
+  background: linear-gradient(90deg, #eae6f7 30%, #bfaaff 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -57,20 +150,16 @@ nav a {
   border-radius: 6px;
   transition: background 0.2s, color 0.2s;
 }
+body.dark nav a {
+  color: #eae6f7;
+}
 nav a:hover {
   background: rgba(255, 255, 255, 0.13);
   color: #ffe;
 }
-
-main {
-  max-width: 1000px;
-  margin: 3rem auto 2rem auto;
-  padding: 2rem 1.5rem;
-  background: #fff;
-  border-radius: 18px;
-  box-shadow: 0 8px 32px rgba(144, 74, 226, 0.1),
-    0 1.5px 8px rgba(74, 144, 226, 0.08);
-  position: relative;
+body.dark nav a:hover {
+  background: rgba(255, 255, 255, 0.08);
+  color: #fff;
 }
 
 section {
@@ -80,11 +169,17 @@ section {
 footer {
   text-align: center;
   padding: 1.5rem;
-  background: linear-gradient(90deg, #e0d6f7 0%, #f7f2ff 100%);
+  background: #fff;
   color: #555;
   margin-top: 2rem;
   border-radius: 0 0 18px 18px;
   box-shadow: 0 -2px 12px rgba(144, 74, 226, 0.07);
+  transition: background 0.3s, color 0.3s;
+}
+body.dark footer {
+  background: #23203a;
+  color: #eae6f7;
+  box-shadow: 0 -2px 12px rgba(74, 144, 226, 0.13);
 }
 
 .formularz-pionowy {
@@ -99,47 +194,16 @@ footer {
   box-shadow: 0 4px 24px rgba(144, 74, 226, 0.13);
   align-items: stretch;
   border: 1.5px solid #e0d6f7;
+  transition: background 0.3s, color 0.3s, border 0.3s;
 }
-
-.formularz-pionowy label {
-  font-weight: 600;
-  margin-bottom: 0.2rem;
-  color: #904ae2;
-  letter-spacing: 0.2px;
-}
-
-.formularz-pionowy input,
-.formularz-pionowy textarea {
-  padding: 0.7rem;
-  border: 1px solid #b3c6e0;
-  border-radius: 7px;
-  font-size: 1rem;
-  background: #f7f2ff;
-  margin-bottom: 0.2rem;
-  font-family: inherit;
-}
-
-.formularz-pionowy button {
-  background: linear-gradient(90deg, #904ae2 0%, #4a90e2 100%);
-  color: #fff;
-  border: none;
-  border-radius: 7px;
-  padding: 0.9rem;
-  font-size: 1.1rem;
-  font-weight: bold;
-  cursor: pointer;
-  margin-top: 0.5rem;
-  box-shadow: 0 2px 8px rgba(144, 74, 226, 0.1);
-  letter-spacing: 0.5px;
-  transition: background 0.2s;
-}
-
-.formularz-pionowy button:hover {
-  background: linear-gradient(90deg, #4a90e2 0%, #904ae2 100%);
+body.dark .formularz-pionowy {
+  background: linear-gradient(120deg, #23203a 60%, #3a2e5c 100%);
+  border-color: #3a2e5c;
+  box-shadow: 0 4px 24px rgba(74, 144, 226, 0.13);
 }
 
 .karta-kota {
-  background: #fff;
+  background: linear-gradient(120deg, #f7f2ff 0%, #e0d6f7 100%);
   border-radius: 16px;
   box-shadow: 0 4px 24px rgba(144, 74, 226, 0.13);
   padding: 1.5rem 1.2rem;
@@ -150,15 +214,18 @@ footer {
   display: flex;
   flex-direction: column;
   gap: 0.7rem;
-  transition: transform 0.15s, box-shadow 0.15s;
+  transition: transform 0.15s, box-shadow 0.15s, background 0.3s;
   border: 1.5px solid #e0d6f7;
   align-items: center;
   position: relative;
   overflow: hidden;
 }
-.karta-kota:hover {
-  box-shadow: 0 12px 36px rgba(144, 74, 226, 0.18);
-  border-color: #904ae2;
+body.dark .karta-kota h3,
+body.dark .karta-kota li strong {
+  color: #bfaaff;
+}
+body.dark .karta-kota ul.cat-info {
+  color: #eae6f7;
 }
 
 .karta-kota h3 {
@@ -224,6 +291,12 @@ footer {
   min-height: 350px;
   position: relative;
   z-index: 1;
+  transition: background 0.3s, color 0.3s;
+}
+body.dark #lista-kotow {
+  background: linear-gradient(120deg, #23203a 60%, #3a2e5c 100%);
+  box-shadow: 0 8px 32px rgba(74, 144, 226, 0.13),
+    0 1.5px 8px rgba(144, 74, 226, 0.1);
 }
 
 #koty > h2 {
@@ -265,10 +338,14 @@ footer {
   color: #4a90e2;
 }
 .stat-value {
-  font-size: 1.05rem;
   color: #333;
   font-weight: 600;
   letter-spacing: 0.2px;
+  font-size: 1.02rem;
+  transition: color 0.3s;
+}
+body.dark .stat-value {
+  color: #eae6f7;
 }
 @media (max-width: 600px) {
   .cat-stats {
@@ -305,6 +382,10 @@ footer {
   font-size: 1.05rem;
   min-width: 54px;
   cursor: help;
+  transition: background 0.3s;
+}
+body.dark .stat-grid-item {
+  background: #2a2540;
 }
 .stat-icon {
   font-size: 1.4rem;
