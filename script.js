@@ -156,4 +156,24 @@ document.addEventListener("DOMContentLoaded", () => {
       document.body.classList.contains("dark") ? "dark" : "light"
     );
   });
+
+  // Walidacja formularza "Dodaj kota"
+  const form = document.getElementById("formularz-kota");
+  const komunikat = document.getElementById("komunikat");
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const imie = form.imie.value.trim();
+    const rasa = form.rasa.value.trim();
+    // opis jest opcjonalny, nie sprawdzamy go
+    komunikat.textContent = "";
+    komunikat.className = "";
+    if (!imie || !rasa) {
+      komunikat.textContent = "Uzupełnij wymagane pola: imię i rasa.";
+      komunikat.className = "komunikat-error";
+      return;
+    }
+    komunikat.textContent = "Kot został dodany!";
+    komunikat.className = "komunikat-success";
+    form.reset();
+  });
 });

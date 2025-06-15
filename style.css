@@ -167,6 +167,10 @@ section {
 }
 
 footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   text-align: center;
   padding: 1.5rem;
   background: #fff;
@@ -180,6 +184,10 @@ body.dark footer {
   background: #23203a;
   color: #eae6f7;
   box-shadow: 0 -2px 12px rgba(74, 144, 226, 0.13);
+}
+footer p {
+  margin: 0.2em 0;
+  line-height: 1.5;
 }
 
 .formularz-pionowy {
@@ -410,4 +418,31 @@ body.dark .stat-grid-item {
   .cat-stats-grid {
     grid-template-columns: repeat(2, 1fr);
   }
+}
+
+#komunikat {
+  margin-top: 1rem;
+  min-height: 1.5em;
+  font-size: 1.08rem;
+  text-align: center;
+  font-weight: 500;
+  transition: color 0.2s, background 0.2s;
+}
+.komunikat-error {
+  color: #fff;
+  background: #e24a4a;
+  border-radius: 7px;
+  padding: 0.5em 1em;
+}
+.komunikat-success {
+  color: #fff;
+  background: #4aa24a;
+  border-radius: 7px;
+  padding: 0.5em 1em;
+}
+body.dark .komunikat-error {
+  background: #a22a2a;
+}
+body.dark .komunikat-success {
+  background: #2a8a2a;
 }
