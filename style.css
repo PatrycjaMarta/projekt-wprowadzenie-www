@@ -33,16 +33,23 @@ body.dark header {
   border: none;
   color: #fff;
   font-size: 1.5rem;
-  margin-top: 1.2rem;
-  margin-left: auto;
+  margin-top: 0;
+  margin-left: 0.7rem;
+  padding: 0.4rem 0.7rem;
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.07);
+  transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+  box-shadow: 0 1px 6px rgba(144, 74, 226, 0.07);
+  align-self: center;
   cursor: pointer;
-  transition: color 0.2s;
   outline: none;
 }
 #darkmode-toggle:hover {
+  background: rgba(144, 74, 226, 0.13);
   color: #ffe;
 }
 body.dark #darkmode-toggle {
+  background: rgba(74, 144, 226, 0.13);
   color: #ffe;
 }
 
@@ -114,6 +121,23 @@ body.dark .karta-kota {
   justify-content: center;
 }
 
+.header-nav {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 1.2rem;
+  margin-top: 1.2rem;
+}
+
+.header-nav ul {
+  display: flex;
+  flex-direction: row;
+  gap: 2rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
 .header-container h1 {
   font-size: 2.5rem;
   font-weight: 800;
@@ -132,15 +156,33 @@ body.dark .header-container h1 {
   background-clip: text;
 }
 
-nav ul {
-  list-style: none;
-  padding: 0;
-  display: flex;
-  gap: 2rem;
-  margin: 0;
+/* --- Poprawa kontrastu tytułu w jasnym trybie --- */
+.main-title-big {
+  font-size: 3.1rem;
+  font-weight: 900;
+  letter-spacing: 1px;
+  color: #6a2fc9;
+  line-height: 1.05;
+  margin-bottom: 0.1em;
+  transition: color 0.3s;
+}
+body.dark .main-title-big {
+  color: #bfaaff;
+}
+.main-title-sub {
+  font-size: 1.25rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  color: #4a90e2;
+  margin-top: 0.1em;
+  transition: color 0.3s;
+}
+body.dark .main-title-sub {
+  color: #eae6f7;
 }
 
 nav a {
+  position: relative;
   color: #fff;
   text-decoration: none;
   font-size: 1.1rem;
@@ -148,18 +190,43 @@ nav a {
   letter-spacing: 0.5px;
   padding: 0.5rem 1.2rem;
   border-radius: 6px;
-  transition: background 0.2s, color 0.2s;
+  transition: background 0.2s, color 0.2s, transform 0.18s;
+  overflow: hidden;
+  z-index: 1;
+}
+nav a::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 0.18em;
+  transform: translateX(-50%) scaleX(0);
+  width: 70%;
+  height: 3px;
+  background: linear-gradient(90deg, #904ae2 0%, #4a90e2 100%);
+  border-radius: 2px;
+  transition: transform 0.25s cubic-bezier(0.4, 1.6, 0.6, 1);
+  z-index: -1;
+}
+nav a:hover,
+nav a:focus {
+  background: rgba(255, 255, 255, 0.13);
+  color: #ffe;
+  transform: scale(1.07);
+}
+nav a:hover::after,
+nav a:focus::after {
+  transform: translateX(-50%) scaleX(1);
 }
 body.dark nav a {
   color: #eae6f7;
 }
-nav a:hover {
-  background: rgba(255, 255, 255, 0.13);
-  color: #ffe;
-}
-body.dark nav a:hover {
+body.dark nav a:hover,
+body.dark nav a:focus {
   background: rgba(255, 255, 255, 0.08);
   color: #fff;
+}
+body.dark nav a::after {
+  background: linear-gradient(90deg, #bfaaff 0%, #4a90e2 100%);
 }
 
 section {
@@ -307,117 +374,25 @@ body.dark #lista-kotow {
     0 1.5px 8px rgba(144, 74, 226, 0.1);
 }
 
-#koty > h2 {
+h1,
+h2 {
   text-align: center;
-  font-size: 2rem;
   font-weight: 700;
   letter-spacing: 0.5px;
   margin-bottom: 1.5rem;
-  color: #904ae2;
   background: linear-gradient(90deg, #904ae2 0%, #4a90e2 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
-
-.cat-stats {
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: 0.7rem 0.5rem;
-  width: 100%;
-  margin: 1.1rem 0 0.2rem 0;
-  text-align: center;
-  justify-items: center;
+h1 {
+  font-size: 2.5rem;
+  font-weight: 800;
+  margin-top: 0;
+  margin-bottom: 0.7rem;
 }
-.cat-stats td {
-  padding: 0;
-  border: none;
-  background: none;
-}
-.stat-icon {
-  font-size: 1.5rem;
-  color: #904ae2;
-  display: block;
-  margin-bottom: 0.2rem;
-  cursor: help;
-  transition: color 0.2s;
-}
-.stat-icon:hover {
-  color: #4a90e2;
-}
-.stat-value {
-  color: #333;
-  font-weight: 600;
-  letter-spacing: 0.2px;
-  font-size: 1.02rem;
-  transition: color 0.3s;
-}
-body.dark .stat-value {
-  color: #eae6f7;
-}
-@media (max-width: 600px) {
-  .cat-stats {
-    grid-template-columns: repeat(3, 1fr);
-    gap: 0.5rem 0.2rem;
-  }
-  .cat-stats td {
-    padding: 0.2rem 0.2rem;
-  }
-  .stat-icon {
-    font-size: 1.1rem;
-  }
-  .stat-value {
-    font-size: 0.95rem;
-  }
-}
-
-.cat-stats-grid {
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: 0.7rem 0.5rem;
-  width: 100%;
-  margin: 1.1rem 0 0.2rem 0;
-  justify-items: center;
-}
-.stat-grid-item {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  background: #f7f2ff;
-  border-radius: 8px;
-  padding: 0.5rem 0.3rem 0.3rem 0.3rem;
-  box-shadow: 0 1px 6px rgba(144, 74, 226, 0.07);
-  font-size: 1.05rem;
-  min-width: 54px;
-  cursor: help;
-  transition: background 0.3s;
-}
-body.dark .stat-grid-item {
-  background: #2a2540;
-}
-.stat-icon {
-  font-size: 1.4rem;
-  color: #904ae2;
-  margin-bottom: 0.1rem;
-}
-.stat-grid-item:hover .stat-icon {
-  color: #4a90e2;
-}
-.stat-value {
-  color: #333;
-  font-weight: 600;
-  letter-spacing: 0.2px;
-  font-size: 1.02rem;
-}
-@media (max-width: 700px) {
-  .cat-stats-grid {
-    grid-template-columns: repeat(3, 1fr);
-  }
-}
-@media (max-width: 400px) {
-  .cat-stats-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
+h2 {
+  font-size: 2rem;
 }
 
 #komunikat {
@@ -472,4 +447,156 @@ body.dark #search-input {
   background: #23203a;
   color: #eae6f7;
   border-color: #3a2e5c;
+}
+
+.akordeon {
+  max-width: 600px;
+  margin: 2.5rem auto 0 auto;
+  border-radius: 14px;
+  box-shadow: 0 2px 16px rgba(144, 74, 226, 0.1);
+  background: linear-gradient(120deg, #fff 60%, #e0d6f7 100%);
+  padding: 1.2rem 1.2rem 0.7rem 1.2rem;
+  transition: background 0.3s;
+}
+body.dark .akordeon {
+  background: linear-gradient(120deg, #23203a 60%, #3a2e5c 100%);
+}
+.akordeon-btn {
+  width: 100%;
+  text-align: left;
+  background: none;
+  border: none;
+  outline: none;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #904ae2;
+  padding: 1rem 0.7rem;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-bottom: 0.2rem;
+  transition: background 0.2s, color 0.2s;
+}
+body.dark .akordeon-btn {
+  color: #bfaaff;
+}
+.akordeon-btn[aria-expanded="true"] {
+  background: #e0d6f7;
+}
+body.dark .akordeon-btn[aria-expanded="true"] {
+  background: #2a2540;
+}
+.akordeon-panel {
+  padding: 0.7rem 1rem 1rem 1.5rem;
+  margin-bottom: 0.5rem;
+  background: none;
+  color: #333;
+  font-size: 1rem;
+  border-left: 3px solid #904ae2;
+  border-radius: 0 0 8px 8px;
+  transition: color 0.3s, background 0.3s;
+}
+body.dark .akordeon-panel {
+  color: #eae6f7;
+  border-left: 3px solid #bfaaff;
+}
+
+.cat-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 0.7rem 0.5rem;
+  width: 100%;
+  margin: 1.1rem 0 0.2rem 0;
+  justify-items: center;
+}
+
+.karta-kota .cat-stats-grid {
+  margin-bottom: 0.5rem;
+}
+
+.stat-grid-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: #f7f2ff;
+  border-radius: 8px;
+  padding: 0.5rem 0.3rem 0.3rem 0.3rem;
+  box-shadow: 0 1px 6px rgba(144, 74, 226, 0.07);
+  font-size: 1.05rem;
+  min-width: 54px;
+  cursor: help;
+  transition: background 0.3s;
+}
+body.dark .stat-grid-item {
+  background: #2a2540;
+}
+
+.stat-icon {
+  font-size: 1.4rem;
+  color: #904ae2;
+  margin-bottom: 0.1rem;
+}
+.stat-grid-item:hover .stat-icon {
+  color: #4a90e2;
+}
+.stat-value {
+  color: #333;
+  font-weight: 600;
+  letter-spacing: 0.2px;
+  font-size: 1.02rem;
+  transition: color 0.3s;
+}
+body.dark .stat-value {
+  color: #eae6f7;
+}
+
+/* --- Tytuł strony: jednokolorowy tekst, połączone style --- */
+.main-title {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 0 0.7rem 0;
+  text-align: center;
+}
+.main-title-big {
+  font-size: 3.1rem;
+  font-weight: 900;
+  letter-spacing: 1px;
+  color: #6a2fc9;
+  line-height: 1.05;
+  margin-bottom: 0.1em;
+  transition: color 0.3s;
+}
+body.dark .main-title-big {
+  color: #bfaaff;
+}
+.main-title-sub {
+  font-size: 1.25rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  color: #4a90e2;
+  margin-top: 0.1em;
+  transition: color 0.3s;
+}
+body.dark .main-title-sub {
+  color: #eae6f7;
+}
+@media (max-width: 600px) {
+  .main-title-big {
+    font-size: 2.1rem;
+  }
+  .main-title-sub {
+    font-size: 1rem;
+  }
+  .header-nav {
+    flex-direction: column;
+    gap: 0.7rem;
+    margin-top: 1rem;
+  }
+  .header-nav ul {
+    gap: 1.1rem;
+  }
+  #darkmode-toggle {
+    margin-left: 0;
+    margin-top: 0.5rem;
+  }
 }

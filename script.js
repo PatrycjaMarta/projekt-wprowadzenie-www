@@ -183,5 +183,27 @@ document.addEventListener("DOMContentLoaded", () => {
     form.reset();
   });
 
+  // Akordeon ciekawostek
+  document.querySelectorAll(".akordeon-btn").forEach((btn) => {
+    btn.addEventListener("click", function () {
+      const expanded = this.getAttribute("aria-expanded") === "true";
+      // Zamknij wszystkie panele
+      document
+        .querySelectorAll(".akordeon-btn")
+        .forEach((b) => b.setAttribute("aria-expanded", "false"));
+      document
+        .querySelectorAll(".akordeon-panel")
+        .forEach((p) => (p.hidden = true));
+      // Otwórz wybrany jeśli nie był otwarty
+      if (!expanded) {
+        this.setAttribute("aria-expanded", "true");
+        const panel = document.getElementById(
+          this.getAttribute("aria-controls")
+        );
+        if (panel) panel.hidden = false;
+      }
+    });
+  });
+
   // W przyszłości: wyszukiwanie tylko w kotach dodanych przez użytkownika (localStorage)
 });

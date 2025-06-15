@@ -13,20 +13,23 @@
   <body>
     <header>
       <div class="header-container">
-        <h1>Kociaki – katalog ras kotów</h1>
-        <nav>
+        <h1 class="main-title">
+          <span class="main-title-big">Kociaki</span>
+          <span class="main-title-sub">katalog ras kotów</span>
+        </h1>
+        <nav class="header-nav">
           <ul>
             <li><a href="#koty">Lista kotów</a></li>
             <li><a href="#dodaj">Dodaj kota</a></li>
           </ul>
+          <button
+            id="darkmode-toggle"
+            aria-label="Przełącz tryb ciemny"
+            title="Przełącz tryb ciemny"
+          >
+            <i class="fa-solid fa-moon"></i>
+          </button>
         </nav>
-        <button
-          id="darkmode-toggle"
-          aria-label="Przełącz tryb ciemny"
-          title="Przełącz tryb ciemny"
-        >
-          <i class="fa-solid fa-moon"></i>
-        </button>
       </div>
     </header>
     <main>
@@ -48,6 +51,51 @@
           <button type="submit">Dodaj kota</button>
         </form>
         <div id="komunikat"></div>
+      </section>
+      <section id="ciekawostki">
+        <h2>Ciekawostki o kotach</h2>
+        <div class="akordeon">
+          <button
+            class="akordeon-btn"
+            aria-expanded="false"
+            aria-controls="ak1"
+          >
+            Dlaczego koty mruczą?
+          </button>
+          <div class="akordeon-panel" id="ak1" hidden>
+            <p>
+              Koty mruczą, gdy są zadowolone, ale także gdy są zestresowane lub
+              chore – to ich sposób na uspokojenie się i komunikację.
+            </p>
+          </div>
+          <button
+            class="akordeon-btn"
+            aria-expanded="false"
+            aria-controls="ak2"
+          >
+            Czy koty widzą w ciemności?
+          </button>
+          <div class="akordeon-panel" id="ak2" hidden>
+            <p>
+              Koty widzą w ciemności znacznie lepiej niż ludzie, dzięki
+              specjalnej warstwie w oku – tapetum lucidum.
+            </p>
+          </div>
+          <button
+            class="akordeon-btn"
+            aria-expanded="false"
+            aria-controls="ak3"
+          >
+            Dlaczego koty ugniatają łapkami?
+          </button>
+          <div class="akordeon-panel" id="ak3" hidden>
+            <p>
+              Ugniatanie łapkami to instynkt z kocięctwa – koty w ten sposób
+              pobudzały matkę do produkcji mleka. Dorosłe koty robią to, gdy
+              czują się bezpiecznie.
+            </p>
+          </div>
+        </div>
       </section>
     </main>
     <footer>
