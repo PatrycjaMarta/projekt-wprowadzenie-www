@@ -604,3 +604,103 @@ body.index-page .karta-kota.visible {
   opacity: 1;
   transform: none;
 }
+
+/* =====================
+   KARUZELA KOTÓW
+   ===================== */
+#cat-carousel-section {
+  margin: 2.5rem auto 2rem auto;
+  max-width: 900px;
+  text-align: center;
+}
+.cat-carousel-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.2rem;
+  position: relative;
+}
+.cat-carousel {
+  display: flex;
+  overflow: hidden;
+  width: 340px;
+  height: 220px;
+  border-radius: 18px;
+  box-shadow: 0 4px 24px rgba(74, 144, 226, 0.13);
+  background: #fff;
+  position: relative;
+  transition: background 0.3s;
+}
+.cat-carousel img {
+  width: 340px;
+  height: 220px;
+  object-fit: cover;
+  border-radius: 18px;
+  flex-shrink: 0;
+  transition: opacity 0.5s;
+}
+.carousel-arrow {
+  background: #904ae2;
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  width: 38px;
+  height: 38px;
+  font-size: 1.3rem;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(144, 74, 226, 0.13);
+  transition: background 0.2s, color 0.2s;
+  z-index: 2;
+}
+.carousel-arrow:hover {
+  background: #4a90e2;
+}
+body.dark .cat-carousel {
+  background: #23203a;
+}
+body.dark .carousel-arrow {
+  background: #3a2e5c;
+  color: #eae6f7;
+}
+
+/* Loader do karuzeli kotów */
+.cat-carousel-loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 340px;
+  height: 220px;
+  background: #fff;
+  border-radius: 18px;
+  font-size: 1.7rem;
+  color: #904ae2;
+  box-shadow: 0 4px 24px rgba(74, 144, 226, 0.13);
+  position: relative;
+}
+body.dark .cat-carousel-loading {
+  background: #23203a;
+  color: #bfaaff;
+}
+
+/* Poprawa widoczności focus dla dostępności */
+:focus-visible {
+  outline: 2.5px solid #4a90e2;
+  outline-offset: 2px;
+  z-index: 10;
+}
+.header-nav a:focus-visible,
+.carousel-arrow:focus-visible,
+.akordeon-btn:focus-visible,
+button:focus-visible {
+  outline: 2.5px solid #904ae2;
+  outline-offset: 2px;
+  background: #eae6f7;
+  color: #23203a;
+}
+body.dark .header-nav a:focus-visible,
+body.dark .carousel-arrow:focus-visible,
+body.dark .akordeon-btn:focus-visible,
+body.dark button:focus-visible {
+  background: #3a2e5c;
+  color: #fff;
+}

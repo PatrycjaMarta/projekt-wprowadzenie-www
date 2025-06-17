@@ -184,6 +184,45 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
+  // --- KARUZELA LOSOWYCH ZDJĘĆ KOTÓW ---
+  const carouselSection = document.getElementById("cat-carousel-section");
+  if (carouselSection) {
+    const carousel = carouselSection.querySelector(".cat-carousel");
+    const leftBtn = carouselSection.querySelector(".carousel-arrow.left");
+    const rightBtn = carouselSection.querySelector(".carousel-arrow.right");
+    let images = [];
+    let current = 0;
+    // Pobierz 6 losowych zdjęć kotów
+    fetch("https://api.thecatapi.com/v1/images/search?limit=6", {
+      headers: { "x-api-key": API_KEY },
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        images = data.map((img) => img.url);
+        renderCarousel();
+      });
+    function renderCarousel() {
+      carousel.innerHTML = images
+        .map(
+          (url, i) =>
+            `<img src="${url}" alt="Losowy kot ${
+              i + 1
+            }" loading="lazy" style="display:${
+              i === current ? "block" : "none"
+            };opacity:${i === current ? 1 : 0};" />`
+        )
+        .join("");
+    }
+    leftBtn.addEventListener("click", () => {
+      current = (current - 1 + images.length) % images.length;
+      renderCarousel();
+    });
+    rightBtn.addEventListener("click", () => {
+      current = (current + 1) % images.length;
+      renderCarousel();
+    });
+  }
+
   // DARK MODE
   const darkToggle = document.getElementById("darkmode-toggle");
   const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
