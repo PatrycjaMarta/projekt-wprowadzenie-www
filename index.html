@@ -13,14 +13,14 @@
   <body>
     <header>
       <div class="header-container">
-        <h1 class="main-title">
+        <div class="main-title">
           <span class="main-title-big">Kociaki</span>
           <span class="main-title-sub">katalog ras kotów</span>
-        </h1>
+        </div>
         <nav class="header-nav">
           <ul>
-            <li><a href="#koty">Lista kotów</a></li>
-            <li><a href="#dodaj">Dodaj kota</a></li>
+            <li><a href="index.html">Lista kotów</a></li>
+            <li><a href="moja-lista.html">Moja lista</a></li>
           </ul>
           <button
             id="darkmode-toggle"
@@ -38,19 +38,6 @@
         <div id="lista-kotow">
           <!-- Tutaj pojawi się lista kotów -->
         </div>
-      </section>
-      <section id="dodaj">
-        <form id="formularz-kota" class="formularz-pionowy">
-          <h2>Dodaj swojego kota</h2>
-          <label for="imie">Imię:</label>
-          <input type="text" id="imie" name="imie" required />
-          <label for="rasa">Rasa:</label>
-          <input type="text" id="rasa" name="rasa" required />
-          <label for="opis">Opis (opcjonalnie):</label>
-          <textarea id="opis" name="opis"></textarea>
-          <button type="submit">Dodaj kota</button>
-        </form>
-        <div id="komunikat"></div>
       </section>
       <section id="ciekawostki">
         <h2>Ciekawostki o kotach</h2>

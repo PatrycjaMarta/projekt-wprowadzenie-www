@@ -4,7 +4,7 @@ Projekt zaliczeniowy na przedmiot "Wprowadzenie do aplikacji WWW".
 
 ## Opis
 
-Strona prezentuje katalog ras kotów z danymi pobieranymi z publicznego API [TheCatAPI](https://thecatapi.com/). Umożliwia przeglądanie ras, wyświetlanie szczegółowych statystyk (w formie ikon i ocen), a także dodawanie własnych kotów przez formularz. Całość wykonana w nowoczesnym stylu, responsywna i przyjazna użytkownikowi.
+Strona prezentuje katalog ras kotów z danymi pobieranymi z publicznego API [TheCatAPI](https://thecatapi.com/). Umożliwia przeglądanie ras, wyświetlanie szczegółowych statystyk (w formie ikon), a także dodawanie własnych kotów przez formularz. Całość wykonana w nowoczesnym stylu, responsywna i przyjazna użytkownikowi.
 
 ## Funkcjonalności
 
@@ -32,8 +32,8 @@ Klucz API nie powinien być przechowywany w repozytorium ani udostępniany publi
    ```
    git clone ...
    ```
-2. Dodaj swój klucz API do pliku `script.js`.
-3. Otwórz plik `index.html` w przeglądarce lub uruchom serwer lokalny (np. `python -m http.server`).
+2. Dodaj swój klucz API do pliku `script.js` lub użyj istniejącego.
+3. Otwórz plik `index.html` w przeglądarce lub uruchom serwer lokalny (np. `python -m http.server` lub używając rozszerzenia live server).
 
 ## Autor
 
