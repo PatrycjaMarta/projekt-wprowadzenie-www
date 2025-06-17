@@ -41,7 +41,7 @@ Klucz API nie powinien być przechowywany w repozytorium ani udostępniany publi
 
 1. Sklonuj repozytorium:
    ```
-   git clone ...
+   git clone https://github.com/PatrycjaMarta/projekt-wprowadzenie-www.git
    ```
 2. Dodaj swój klucz API do pliku `script.js` lub użyj istniejącego.
 3. Otwórz plik `index.html` w przeglądarce lub uruchom serwer lokalny (np. `python -m http.server` lub używając rozszerzenia live server).
