@@ -1,10 +1,20 @@
 // script.js – logika strony o kotach
 
+// GŁÓWNE FUNKCJE I MODUŁY:
+// 1. Obsługa trybu ciemnego (dark mode) – przełącznik, localStorage
+// 2. Pobieranie i renderowanie ras kotów z TheCatAPI (główna lista)
+// 3. Pobieranie i wyświetlanie karuzeli losowych zdjęć kotów
+// 4. Animacje kart kotów przy scrollowaniu (IntersectionObserver)
+// 5. Akordeon ciekawostek (rozwijanie/zwijanie, aria)
+// 6. Obsługa podstrony „Moja lista” – localStorage, formularz, filtrowanie, sortowanie
+
+// Po załadowaniu DOM uruchamiane są wszystkie funkcje zależnie od podstrony
+
 document.addEventListener("DOMContentLoaded", () => {
-  const API_KEY = "c8635295-e747-43cb-b193-3c2c82c237d0"; // <-- Wklej tutaj swój klucz z TheCatAPI
+  const API_KEY = "c8635295-e747-43cb-b193-3c2c82c237d0"; // Klucz do TheCatAPI
   const listaKotow = document.getElementById("lista-kotow");
 
-  // --- Dodaj klasę index-page tylko na stronie głównej ---
+  // Dodaje klasę index-page tylko na stronie głównej (do animacji)
   if (
     window.location.pathname.endsWith("index.html") ||
     window.location.pathname === "/" ||
@@ -13,10 +23,12 @@ document.addEventListener("DOMContentLoaded", () => {
     document.body.classList.add("index-page");
   }
 
-  // --- Renderuj rasy kotów tylko na stronie głównej ---
+  // --- 2. Pobieranie i renderowanie ras kotów z TheCatAPI ---
+  // (tylko na stronie głównej)
   if (listaKotow) {
     let allCats = [];
 
+    // Pobiera listę ras kotów z API
     fetch("https://api.thecatapi.com/v1/breeds?limit=10", {
       headers: {
         "x-api-key": API_KEY,
@@ -26,7 +38,7 @@ document.addEventListener("DOMContentLoaded", () => {
       .then(async (data) => {
         if (Array.isArray(data)) {
           allCats = data;
-          renderCats(allCats);
+          renderCats(allCats); // Wywołuje renderowanie kart
         } else {
           listaKotow.innerHTML = "Nie udało się pobrać ras kotów.";
         }
@@ -36,11 +48,11 @@ document.addEventListener("DOMContentLoaded", () => {
         console.error(error);
       });
 
-    // Funkcja renderująca koty (zamiast duplikowania kodu)
+    // Funkcja renderująca karty kotów na podstawie pobranych danych
     async function renderCats(cats) {
       listaKotow.innerHTML =
         '<div class="loading-info" aria-live="polite"><i class="fa-solid fa-spinner"></i> Ładowanie kotów...</div>';
-      // Pobierz wszystkie zdjęcia równolegle
+      // Pobiera zdjęcia dla każdej rasy
       const images = await Promise.all(
         cats.map(async (cat) => {
           let imgUrl = "";
@@ -62,7 +74,7 @@ document.addEventListener("DOMContentLoaded", () => {
         })
       );
       listaKotow.innerHTML = "";
-      // Renderuj wszystkie karty naraz
+      // Tworzy karty kotów na podstawie szablonu
       cats.forEach((cat, i) => {
         const template = document.getElementById("cat-card-template");
         const card = template.content.cloneNode(true);
@@ -92,7 +104,7 @@ document.addEventListener("DOMContentLoaded", () => {
         card.querySelector(".cat-hypo").textContent = cat.hypoallergenic
           ? "Tak"
           : "Nie";
-        // Statystyki jako grid
+        // Statystyki jako grid (ikony + wartości)
         const stats = [
           {
             icon: "fa-heart",
@@ -160,13 +172,13 @@ document.addEventListener("DOMContentLoaded", () => {
           statsGrid.appendChild(statDiv);
         });
         card.querySelector(".cat-stats-grid").replaceWith(statsGrid);
-        // Wikipedia
+        // Link do Wikipedii
         const wiki = card.querySelector(".cat-wiki");
         wiki.href = cat.wikipedia_url;
         wiki.textContent = "Wikipedia";
         listaKotow.appendChild(card);
       });
-      // Scroll animation: dodaj klasę .visible gdy karta wchodzi do viewportu
+      // Animacja pojawiania się kart przy scrollowaniu
       const observer = new IntersectionObserver(
         (entries) => {
           entries.forEach((entry) => {
@@ -184,7 +196,8 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  // --- KARUZELA LOSOWYCH ZDJĘĆ KOTÓW ---
+  // --- 3. Karuzela losowych zdjęć kotów (góra strony) ---
+  // Pobiera 6 losowych zdjęć z TheCatAPI i umożliwia przewijanie
   const carouselSection = document.getElementById("cat-carousel-section");
   if (carouselSection) {
     const carousel = carouselSection.querySelector(".cat-carousel");
@@ -192,7 +205,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const rightBtn = carouselSection.querySelector(".carousel-arrow.right");
     let images = [];
     let current = 0;
-    // Pobierz 6 losowych zdjęć kotów
     fetch("https://api.thecatapi.com/v1/images/search?limit=6", {
       headers: { "x-api-key": API_KEY },
     })
@@ -223,7 +235,8 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // DARK MODE
+  // --- 1. Obsługa trybu ciemnego (dark mode) ---
+  // Przełącznik, localStorage, automatyczne wykrywanie preferencji
   const darkToggle = document.getElementById("darkmode-toggle");
   const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
   const savedTheme = localStorage.getItem("theme");
@@ -238,7 +251,8 @@ document.addEventListener("DOMContentLoaded", () => {
     );
   });
 
-  // --- Moja lista: obsługa localStorage i wyświetlanie własnych kotów z losowym zdjęciem z TheCatAPI ---
+  // --- 6. Podstrona „Moja lista” (localStorage, formularz, filtrowanie, sortowanie) ---
+  // Kod uruchamia się tylko na podstronie moja-lista.html
   if (window.location.pathname.includes("moja-lista.html")) {
     const form = document.getElementById("formularz-kota");
     const komunikat = document.getElementById("komunikat");

@@ -11,6 +11,28 @@
     />
   </head>
   <body>
+    <!--
+      KOD HTML STRONY GŁÓWNEJ – OPIS ELEMENTÓW I LOGIKI
+
+      Najważniejsze elementy:
+      - <header>: Pasek nagłówka z tytułem strony i nawigacją (menu, przełącznik trybu ciemnego)
+      - <main>: Główna treść strony
+        - Sekcja karuzeli: dynamiczna karuzela losowych zdjęć kotów (JS pobiera zdjęcia z TheCatAPI)
+        - Sekcja "Lista ras kotów": dynamicznie generowane karty ras kotów (JS pobiera dane z TheCatAPI)
+        - Sekcja "Ciekawostki": akordeon z ciekawostkami o kotach (JS obsługuje rozwijanie)
+      - <footer>: Stopka z informacją o autorze i projekcie
+      - <template id="cat-card-template">: Szablon karty kota, używany przez JS do generowania kart
+      - <script src="script.js">: Główna logika strony (patrz niżej)
+
+      NAJWAŻNIEJSZE FRAGMENTY script.js:
+      - Pobieranie i wyświetlanie ras kotów z TheCatAPI (sekcja "Lista ras kotów")
+      - Pobieranie i wyświetlanie losowych zdjęć do karuzeli (sekcja na górze)
+      - Obsługa trybu ciemnego (przełącznik, localStorage)
+      - Animacje kart kotów przy scrollowaniu (IntersectionObserver)
+      - Akordeon ciekawostek (rozwijanie/zwijanie, aria)
+      - Kod modularny, podzielony na sekcje dla każdej funkcjonalności
+      - Wszystkie dane dynamiczne (karty kotów, karuzela) generowane są przez JS
+    -->
     <header>
       <div class="header-container">
         <div class="main-title">
