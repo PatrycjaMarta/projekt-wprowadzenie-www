@@ -704,3 +704,42 @@ body.dark button:focus-visible {
   background: #3a2e5c;
   color: #fff;
 }
+
+/* Poprawa widoczności linku Wikipedia na karcie kota */
+.cat-wiki {
+  color: #fff !important;
+  background: linear-gradient(90deg, #904ae2 0%, #4a90e2 100%);
+  padding: 0.35em 1.1em;
+  border-radius: 8px;
+  font-weight: 700;
+  text-decoration: none;
+  box-shadow: 0 2px 8px rgba(144, 74, 226, 0.13);
+  transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+  display: inline-block;
+  margin-top: 0.2em;
+}
+.cat-wiki:visited {
+  color: #fff !important;
+  background: linear-gradient(90deg, #6a3fc7 0%, #2e5c90 100%);
+}
+.cat-wiki:hover,
+.cat-wiki:focus {
+  background: linear-gradient(90deg, #4a90e2 0%, #904ae2 100%);
+  color: #ffe !important;
+  box-shadow: 0 4px 16px rgba(74, 144, 226, 0.18);
+  outline: 2px solid #fff;
+}
+body.dark .cat-wiki {
+  color: #23203a !important;
+  background: linear-gradient(90deg, #bfaaff 0%, #4a90e2 100%);
+}
+body.dark .cat-wiki:visited {
+  color: #23203a !important;
+  background: linear-gradient(90deg, #a18be6 0%, #3a2e5c 100%);
+}
+body.dark .cat-wiki:hover,
+body.dark .cat-wiki:focus {
+  background: linear-gradient(90deg, #4a90e2 0%, #bfaaff 100%);
+  color: #18162a !important;
+  outline: 2px solid #bfaaff;
+}
