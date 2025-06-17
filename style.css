@@ -39,6 +39,8 @@ body.dark header {
   gap: 1.2rem;
   align-items: center;
   justify-content: center;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
 }
 
 .header-nav {
@@ -470,6 +472,8 @@ body.dark .akordeon-btn[aria-expanded="true"] {
   border-left: 3px solid #904ae2;
   border-radius: 0 0 8px 8px;
   transition: color 0.3s, background 0.3s;
+  width: 100%;
+  box-sizing: border-box;
 }
 body.dark .akordeon-panel {
   color: #eae6f7;
@@ -742,4 +746,19 @@ body.dark .cat-wiki:focus {
   background: linear-gradient(90deg, #4a90e2 0%, #bfaaff 100%);
   color: #18162a !important;
   outline: 2px solid #bfaaff;
+}
+
+/* Poprawa szerokości akordeonu w ciekawostkach */
+.akordeon {
+  width: 100%;
+  box-sizing: border-box;
+}
+.akordeon-btn {
+  width: 100%;
+  text-align: left;
+  box-sizing: border-box;
+}
+.akordeon-panel {
+  width: 100%;
+  box-sizing: border-box;
 }
